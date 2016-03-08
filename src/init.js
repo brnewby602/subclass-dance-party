@@ -1,7 +1,28 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.storage = {};
   window.windowWidth = $(document).width();
   window.windowHeight = $(document).height();
+
+  var appendLocation = function(dancer) {
+    var top = dancer.getTop() + (dancer.getHeight() / 2);
+    var left = dancer.getLeft() + (dancer.getWidth() / 2);
+ 
+    // top = 74.25
+    // left = 225.1
+
+    var topMod20 = Math.floor(Math.round( top / 120) * 120);
+    var leftMod20 = Math.floor(Math.round( left / 120) * 120);
+
+
+   
+    var key = topMod20 + '|' + leftMod20;
+    if (!window.storage[key]) {
+      window.storage[key] = dancer;
+    } else {
+      // call interact function passing in the dancer already in storage and the
+    }
+  };
 
   var addDancer = function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -30,6 +51,8 @@ $(document).ready(function() {
     );
 
     window.dancers.push(dancer);
+    appendLocation(dancer);
+
     $('body').append(dancer.$node);
   };
 
