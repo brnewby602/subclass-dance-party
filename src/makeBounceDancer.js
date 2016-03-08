@@ -19,6 +19,6 @@ makeBounceDancer.prototype.step = function() {
     // this.$node.slideToggle();
   // console.log("AFTER TOGGLE: " + this.$node[0].outerHTML);
   // this.$node.bounce();
-  this.$node.toggle();
+  // this.$node.toggle();
   //this.$node.toggle("bounce", { times: 1 }, "slow");
 };
