@@ -93,6 +93,14 @@ $(document).ready(function() {
 
   $('.addLineUpButton').on('click', function(event) {
     console.log(window.dancers);
+
+    // iterate over dancers array
+      // call setPosition and align them on the right
+      var position = 100;
+      window.dancers.forEach(function(dancer) {
+        dancer.setPosition(100, position);
+        position += 100;
+      });
   });
 
 });
