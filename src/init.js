@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     window.dancers.push(dancer);
     $('body').append(dancer.$node);
-  }
+  };
 
   $('.addDancerButton').on('click', addDancer);
   $('.addBounceButton').on('click', addDancer);
