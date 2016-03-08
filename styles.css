@@ -20,8 +20,7 @@ a:active {
     color: #336633;
 }
 
-.title,
-.addDancerButton {
+.title {
     padding: 5px 12px;
     float: right;
 }
@@ -49,6 +48,7 @@ a:active {
     padding: 10px;
     border-radius: 40px;
     position: absolute;
+    transition: all 1.5s ease;
 }
 
 
