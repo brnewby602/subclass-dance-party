@@ -21,15 +21,17 @@ makeBlinkyDancer.prototype.move = function() {
   var topBound = 0;
   var leftBound = 0;
 
-  var rand = (Math.random() - 0.5) * 100;
+  var randV = (Math.random() - 0.5) * 100;
+  var randH = (Math.random() - 0.5) * 100;
 
-  if ((rand + this._top >= topBound) && (rand + this._top <= bottomBound)) {
-    this._top += rand;
+  // if number is greater than 0 && number is less than boundary
+    // do this
+  if ((randV + this._top >= topBound) && (randV + this._top <= bottomBound)) {
+    this._top += randV;
   } 
 
-  if ((rand + this._left >= leftBound) && (rand + this._left <= bottomBound)) {
-    this._left += rand;
+  if ((randH + this._left >= leftBound) && (randH + this._left <= rightBound)) {
+    this._left += randH;
   }
-
   this.setPosition(this._top, this._left);
 };
