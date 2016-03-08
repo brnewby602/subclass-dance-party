@@ -1,5 +1,7 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.windowWidth = $(document).width();
+  window.windowHeight = $(document).height();
 
   var addDancer = function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -35,28 +37,24 @@ $(document).ready(function() {
   $('.addBounceButton').on('click', addDancer);
   $('.addRotateButton').on('click', addDancer);
 
+  var willLineUp = true;
   $('.addLineUpButton').on('click', function(event) {
-    var spacing = 0;
-    var position = 0;
-    console.log(window.dancers);
-    console.log($(document).width());
-    var windowWidth = $(document).width() - 60;    // 2000
-    spacing = windowWidth / (window.dancers.length + 1); // 1000
-    position = spacing;
-    window.dancers.forEach(function(dancer) {
-      dancer.setPosition(100, position);
-      position += spacing;
-    });
-
-    // 
-
-      // var position = 100;
-      // window.dancers.forEach(function(dancer) {
-      //   dancer.setPosition(100, position);
-      //   position += 100;
-      //   console.log(dancer.$node.outerWidth());
-      // });
+    if (willLineUp) {
+      var spacing = 0;
+      var position = 0;
+      var windowWidth = $(document).width() - 60;    // 2000
+      spacing = windowWidth / (window.dancers.length + 1); // 1000
+      position = spacing;
+      window.dancers.forEach(function(dancer) {
+        dancer.lineUp(100, position);
+        position += spacing;
+      });
+    } else {
+      window.dancers.forEach(function(dancer) {
+        dancer.goBack();
+      });
+    }
+    willLineUp = !willLineUp
   });
-
 });
 
