@@ -38,3 +38,19 @@ makeDancer.prototype.goBack = function() {
   this._lineUpFlag = false;
   this.setPosition(this._top, this._left);
 };
+
+makeDancer.prototype.setTop = function(top) {
+  this._top = top;
+};
+
+makeDancer.prototype.setLeft = function(left) {
+  this._left = left;
+};
+
+makeDancer.prototype.getTop = function() {
+  return this._top;
+};
+
+makeDancer.prototype.getLeft = function() {
+  return this._left;
+};
