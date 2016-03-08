@@ -29,6 +29,10 @@ makeDancer.prototype.getWidth = function() {
   return this.$node.outerWidth();
 };
 
+makeDancer.prototype.getHeight = function() {
+  return this.$node.outerHeight();
+};
+
 makeDancer.prototype.lineUp = function(top, left) {
   this._lineUpFlag = true;
   this.setPosition(top, left);
