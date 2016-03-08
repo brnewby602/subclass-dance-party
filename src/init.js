@@ -92,15 +92,26 @@ $(document).ready(function() {
   });
 
   $('.addLineUpButton').on('click', function(event) {
+    var spacing = 0;
+    var position = 0;
     console.log(window.dancers);
+    console.log($(document).width());
+    var windowWidth = $(document).width() - 60;    // 2000
+    spacing = windowWidth / (window.dancers.length + 1); // 1000
+    position = spacing;
+    window.dancers.forEach(function(dancer) {
+      dancer.setPosition(100, position);
+      position += spacing;
+    });
 
-    // iterate over dancers array
-      // call setPosition and align them on the right
-      var position = 100;
-      window.dancers.forEach(function(dancer) {
-        dancer.setPosition(100, position);
-        position += 100;
-      });
+    // 
+
+      // var position = 100;
+      // window.dancers.forEach(function(dancer) {
+      //   dancer.setPosition(100, position);
+      //   position += 100;
+      //   console.log(dancer.$node.outerWidth());
+      // });
   });
 
 });
