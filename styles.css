@@ -86,6 +86,10 @@ a:active {
     transition: all 1.5s ease;   
 }
 
+.grow {
+    transform: scale(5);
+}
+
 /*
 
 Navigation
