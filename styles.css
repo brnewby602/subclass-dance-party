@@ -5,7 +5,7 @@ html {
 
 body {
     margin: 0px;
-    background: url(Super-Mario-Bros.-Desktop.jpg) no-repeat center center fixed;
+    background: url(imgs/Super-Mario-Bros.-Desktop.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -54,9 +54,21 @@ a:active {
 }
 
 .rotated {
-    transform: rotate(360deg) translate(50px);
+    transform: scale(2) rotate(360deg);
+
 }
 
+.rotater {
+    background:url(imgs/mario.png) no-repeat top left;
+    background-size: cover;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    transition: all 1.5s ease;   
+}
+
+.grow {
+}
 
 /*
 
