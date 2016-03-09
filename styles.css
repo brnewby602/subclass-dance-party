@@ -67,7 +67,13 @@ a:active {
     transition: all 1.5s ease;   
 }
 
-.grow {
+.blinky {
+    background:url(imgs/shell.png) no-repeat top left;
+    background-size: cover;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    transition: all 1.5s ease;   
 }
 
 /*
