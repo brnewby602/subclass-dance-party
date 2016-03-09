@@ -82,9 +82,23 @@ $(document).ready(function() {
       Math.random() * 1000
     );
 
+    $(dancer.$node).on('mouseover', function() {
+      dancer.dance();
+    });
+
     window.dancers.push(dancer);
-    if (!(dancer instanceof makeBlinkyDancer)) {
+
+    // don't want to use move method called twice (window.append is invoked)
+    if (!(dancer instanceof makeRotatingDancer)) {
       appendLocation(dancer);
+    } 
+
+    if (dancer instanceof makeBlinkyDancer) { 
+      $(dancer.$node).on('mouseout', function() {
+
+        dancer.dance();
+        dancer._dontBlink = false;
+      });          
     }
 
     $('body').append(dancer.$node);
@@ -111,7 +125,7 @@ $(document).ready(function() {
         dancer.goBack();
       });
     }
-    willLineUp = !willLineUp
+    willLineUp = !willLineUp;
   });
 });
 
