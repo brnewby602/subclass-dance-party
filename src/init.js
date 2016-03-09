@@ -120,10 +120,28 @@ $(document).ready(function() {
         dancer.lineUp(100, position);
         position += spacing;
       });
+
+      //hide the 3 dancer buttons
+
+      $('.addDancerButton').hide();
+      $('.addBounceButton').hide();
+      $('.addRotateButton').hide();
+
+      //change text of lineUpButton to "Scatter"
+      $(this).text("Scatter");
+
     } else {
       window.dancers.forEach(function(dancer) {
         dancer.goBack();
       });
+
+      // show the 3 dancer buttons
+      $('.addDancerButton').show();
+      $('.addBounceButton').show();
+      $('.addRotateButton').show();
+
+      // change text back to "Line em up"
+      $(this).text("Line em up");
     }
     willLineUp = !willLineUp;
   });
