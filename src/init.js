@@ -4,24 +4,56 @@ $(document).ready(function() {
   window.windowWidth = $(document).width();
   window.windowHeight = $(document).height();
 
-  var appendLocation = function(dancer) {
+  window.intersection = function(dancers, currentDancer) {
+    dancers.forEach(function(dancer) {
+      dancer.dance();
+    });
+    currentDancer.dance();
+  };
+
+
+
+  window.appendLocation = function(dancer, oldTop, oldLeft) {
+    //find center poits for top and left
     var top = dancer.getTop() + (dancer.getHeight() / 2);
     var left = dancer.getLeft() + (dancer.getWidth() / 2);
- 
+    oldTop = oldTop + (dancer.getHeight() / 2);
+    oldLeft = oldLeft + (dancer.getWidth() / 2);
+    //console.dir(window.storage)
+
     // top = 74.25
     // left = 225.1
+    // round center values to nearest 120px to reduce number of storage points
+    var topMod120 = Math.floor(Math.round( top / 120) * 120);
+    var leftMod120 = Math.floor(Math.round( left / 120) * 120);
+    
+    // if dancer is moving (i.e. we get an oldTop and oldLeft)
+    if (oldLeft !== undefined) {
+      //oldTop and oldLeft exist only for moving Dancers so that we may remove
+      //them from their old positions within storage
+      oldTop = Math.floor(Math.round( oldTop / 120) * 120);
+      oldLeft = Math.floor(Math.round( oldLeft / 120) * 120);
 
-    var topMod20 = Math.floor(Math.round( top / 120) * 120);
-    var leftMod20 = Math.floor(Math.round( left / 120) * 120);
 
+      //create key for old and new position
+      var oldKey = oldTop + '|' + oldLeft; 
+      window.storage[oldKey] = window.storage[oldKey] || []; 
 
-   
-    var key = topMod20 + '|' + leftMod20;
-    if (!window.storage[key]) {
-      window.storage[key] = dancer;
-    } else {
-      // call interact function passing in the dancer already in storage and the
+      // remove from storage at the old key
+      if (window.storage[oldKey].includes(dancer)) {
+        window.storage[oldKey].splice(window.storage[oldKey].indexOf(dancer), 1);  
+      }
     }
+    
+    var key = topMod120 + '|' + leftMod120;
+    window.storage[key] = window.storage[key] || []; 
+
+    if (window.storage[key].length > 0) {
+      // do something if intersection
+      intersection(window.storage[key], dancer);
+    } 
+
+    window.storage[key].push(dancer);
   };
 
   var addDancer = function(event) {
@@ -51,7 +83,9 @@ $(document).ready(function() {
     );
 
     window.dancers.push(dancer);
-    appendLocation(dancer);
+    if (!(dancer instanceof makeBlinkyDancer)) {
+      appendLocation(dancer);
+    }
 
     $('body').append(dancer.$node);
   };
