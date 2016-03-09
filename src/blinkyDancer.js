@@ -2,6 +2,7 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   // this._oldStep = makeDancer.prototype.step;
   var $node = $('<span class="blinky"></span>');
   makeDancer.call(this, top, left, timeBetweenSteps, $node);
+  this._blinkCount = 0;
 };
 
 makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
@@ -9,34 +10,27 @@ makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
 makeBlinkyDancer.prototype.step = function() {
   makeDancer.prototype.step.call(this);
-
-  if (!this._lineUpFlag) {
-    this.move();
+  if (this._blinkCount > 0) {
+    this._blinkCount--;
+    this.$node.toggle();
+  } else {
+    this.$node.show();
   }
-  // this.$node.toggle();
 };
 
-makeBlinkyDancer.prototype.move = function() {
-  var bottomBound = window.windowHeight - 60;
-  var rightBound = window.windowWidth - 60;
-  var topBound = 0;
-  var leftBound = 0;
+makeBlinkyDancer.prototype.dance = function() {
+  var styleSettings = {
+    top: this._top,
+    left: this._left //, 
+  };
+  
+  //set counter for number of blinks
+  this._blinkCount = 6;
 
-  var randV = (Math.random() - 0.5) * 100;
-  var randH = (Math.random() - 0.5) * 100;
+ // this.$node.toggleClass('grow');  only want to grow on mouseover
+};
 
-  var oldTop = this._top;
-  var oldLeft = this._left;
-
-  // if number is greater than 0 && number is less than boundary
-    // do this
-  if ((randV + this._top >= topBound) && (randV + this._top <= bottomBound)) {
-    this._top += randV;
-  } 
-
-  if ((randH + this._left >= leftBound) && (randH + this._left <= rightBound)) {
-    this._left += randH;
-  }
-  this.setPosition(this._top, this._left);
-  window.appendLocation(this, oldTop, oldLeft);
+makeBlinkyDancer.prototype.lineUp = function(top, left) {
+  this._blinkCount = 0;
+  makeDancer.prototype.lineUp.call(this, top, left);
 };
