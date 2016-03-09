@@ -67,6 +67,7 @@ makeDancer.prototype.dance = function() {
   };
 
   this.$node.toggleClass('rotated');
+  // this.$node.toggleClass('grow');
   //this.$node.css(styleSettings);
 
 //   /* Firefox */
