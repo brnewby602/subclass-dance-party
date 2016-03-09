@@ -58,3 +58,30 @@ makeDancer.prototype.getTop = function() {
 makeDancer.prototype.getLeft = function() {
   return this._left;
 };
+
+makeDancer.prototype.dance = function() {
+  var styleSettings = {
+    top: this._top,
+    left: this._left //,
+    //transform: "rotate(45deg) translate(50px)"
+  };
+
+  this.$node.toggleClass('rotated');
+  //this.$node.css(styleSettings);
+
+//   /* Firefox */
+// 26.
+// -moz-transform: scale(2) rotate(30deg) translate(50px);
+// 27.
+// /* WebKit */
+// 28.
+// -webkit-transform: scale(1.2) rotate(30deg) translate(50px);
+// 29.
+// /* Opera */
+// 30.
+// -o-transform: scale(2) rotate(30deg) translate(50px);
+// 31.
+// /* Standard */
+// 32.
+// transform: scale(2) rotate(30deg) translate(50px);
+};
